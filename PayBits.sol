@@ -37,7 +37,6 @@ contract PayBits is ERC20 {
     mint_request[] public mint_requests;
     
     mapping (address => mapping (uint => bool)) validator_signed;
-    mapping (uint => uint) total_signs;
     mapping (uint => bool) request_state;
     mapping (address => bool) addressValidator;
     
@@ -56,8 +55,7 @@ contract PayBits is ERC20 {
         require(_request<=mint_requests.length,"Request number invalid");
         require(!request_state[_request], "Already validated");
         require(addressValidator[msg.sender],"Only validators");
-        require(!validator_signed[msg.sender][_request],"Validator already signed");
-        total_signs[_request]++;
+        require(msg.sender!=mint_requests[_request].wallet,"You cannot approve your own request");
         _mint(mint_requests[_request].walllet,mint_requests[_request].value);
         request_state[_request]=true;
     }
