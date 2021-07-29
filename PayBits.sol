@@ -12,17 +12,20 @@ contract PayBits is ERC20 {
     uint hashModulus = 10 ** hashDigits;
     uint current_request;
     uint current_burn;
+    uint public price;
     
     constructor(
         string memory name,
         string memory symbol,
         uint256 initialSupply,
         string memory validator_name,
-        string memory validator_ID
+        string memory validator_ID,
+        uint initial_price
     ) ERC20(name, symbol) {
         _setOwner(_msgSender());
-        _mint(owner(), initialSupply);
+        _mint(owner(), initialSupply*1e18);
         add_wallet_sign(_msgSender(), validator_name, validator_ID);
+        set_price(initial_price);
     }
 
     struct validator{
@@ -52,6 +55,10 @@ contract PayBits is ERC20 {
     mapping (uint => string) burn_file_name;
     mapping (address => bool) addressValidator;
     
+    function set_price(uint _price) public onlyOwner{
+        price=_price;
+    }
+    
     function add_wallet_sign(address _address, string memory _name, string memory _ID) public onlyOwner{
         uint hash_uint=uint(keccak256(abi.encodePacked(_name,_ID)));
         uint hash_data=hash_uint % hashModulus;
@@ -62,7 +69,7 @@ contract PayBits is ERC20 {
     
     function mint_tokens_request (uint256 _value, string memory _file_name) public{
         require(_value>0,"value request must be positive");
-        mint_requests.push(mint_request(msg.sender, _value, block.timestamp,_file_name));
+        mint_requests.push(mint_request(msg.sender, _value*1e18, block.timestamp,_file_name));
         current_request=mint_requests.length;
         requests_sent[msg.sender].push(current_request);
     }
@@ -72,13 +79,17 @@ contract PayBits is ERC20 {
     }
     
     function get_my_request(uint _index) public view returns (uint request_id,address _wallet, uint _value, uint _timeStamp, string memory _file_name){
+        require(_index>=0,"index value must be positive");
+        //require(_index<=requests_sent[msg.sender].length,"Index invalid or out of range");
         return (requests_sent[msg.sender][_index],mint_requests[requests_sent[msg.sender][_index]].wallet,mint_requests[requests_sent[msg.sender][_index]].value,mint_requests[requests_sent[msg.sender][_index]].timeStamp,mint_requests[requests_sent[msg.sender][_index]].file_name);
     }
     function admin_get_total_requests() public onlyOwner view returns (uint total_requests){
-        return requests_sent[msg.sender].length;
+        return mint_requests.length;
     }
     
     function admin_get_request(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name) {
+        require(_index>=0,"index value must be positive");
+        require(_index<=mint_requests.length,"Index invalid or out of range");
         return (mint_requests[_index].wallet,mint_requests[_index].value,mint_requests[_index].timeStamp,mint_requests[_index].file_name);
     }
     
@@ -102,13 +113,17 @@ contract PayBits is ERC20 {
     }
     
     function get_my_burn(uint _index) public view returns (uint burn_id,address _wallet, uint _value, uint _timeStamp, string memory _file_name){
+        require(_index>=0,"index value must be positive");
+        require(_index<=burns_sent[msg.sender].length,"Index invalid or out of range");
         return (burns_sent[msg.sender][_index],burn_requests[burns_sent[msg.sender][_index]].wallet,burn_requests[burns_sent[msg.sender][_index]].value,burn_requests[burns_sent[msg.sender][_index]].timeStamp,burn_file_name[burns_sent[msg.sender][_index]]);
     }
     function admin_get_total_burns() public onlyOwner view returns (uint total_burns){
-        return burns_sent[msg.sender].length;
+        return burn_requests.length;
     }
     
     function admin_get_burn(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name) {
+        require(_index>=0,"index value must be positive");
+        require(_index<=burn_requests.length,"Index invalid or out of range");
         return (burn_requests[_index].wallet,burn_requests[_index].value,burn_requests[_index].timeStamp,burn_file_name[_index]);
     }
     
