@@ -70,7 +70,7 @@ contract PayBits is ERC20 {
     function mint_tokens_request (uint256 _value, string memory _file_name) public{
         require(_value>0,"value request must be positive");
         mint_requests.push(mint_request(msg.sender, _value*1e18, block.timestamp,_file_name));
-        current_request=mint_requests.length;
+        current_request=mint_requests.length-1;
         requests_sent[msg.sender].push(current_request);
     }
     
@@ -78,19 +78,19 @@ contract PayBits is ERC20 {
         return requests_sent[msg.sender].length;
     }
     
-    function get_my_request(uint _index) public view returns (uint request_id,address _wallet, uint _value, uint _timeStamp, string memory _file_name){
+    function get_my_request(uint _index) public view returns (uint request_id, uint _value, uint _timeStamp, string memory _file_name, bool _state){
         require(_index>=0,"index value must be positive");
         //require(_index<=requests_sent[msg.sender].length,"Index invalid or out of range");
-        return (requests_sent[msg.sender][_index],mint_requests[requests_sent[msg.sender][_index]].wallet,mint_requests[requests_sent[msg.sender][_index]].value,mint_requests[requests_sent[msg.sender][_index]].timeStamp,mint_requests[requests_sent[msg.sender][_index]].file_name);
+        return (requests_sent[msg.sender][_index],mint_requests[requests_sent[msg.sender][_index]].value,mint_requests[requests_sent[msg.sender][_index]].timeStamp,mint_requests[requests_sent[msg.sender][_index]].file_name, request_state[requests_sent[msg.sender][_index]]);
     }
     function admin_get_total_requests() public onlyOwner view returns (uint total_requests){
         return mint_requests.length;
     }
     
-    function admin_get_request(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name) {
+    function admin_get_request(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state) {
         require(_index>=0,"index value must be positive");
         require(_index<=mint_requests.length,"Index invalid or out of range");
-        return (mint_requests[_index].wallet,mint_requests[_index].value,mint_requests[_index].timeStamp,mint_requests[_index].file_name);
+        return (mint_requests[_index].wallet,mint_requests[_index].value,mint_requests[_index].timeStamp,mint_requests[_index].file_name, request_state[_index]);
     }
     
     function mint_tokens_approve (uint256 _request) public{
@@ -103,8 +103,8 @@ contract PayBits is ERC20 {
     }
     function burn_tokens(uint256 _value) public{
         require(_value>0,"value request must be positive");
-        burn_requests.push(burn_request(msg.sender, _value, block.timestamp));
-        current_burn=burn_requests.length;
+        burn_requests.push(burn_request(msg.sender, _value*1e18, block.timestamp));
+        current_burn=burn_requests.length-1;
         burns_sent[msg.sender].push(current_burn);
         _burn(msg.sender,_value);
     }
@@ -112,19 +112,19 @@ contract PayBits is ERC20 {
         return burns_sent[msg.sender].length;
     }
     
-    function get_my_burn(uint _index) public view returns (uint burn_id,address _wallet, uint _value, uint _timeStamp, string memory _file_name){
+    function get_my_burn(uint _index) public view returns (uint burn_id, uint _value, uint _timeStamp, string memory _file_name, bool _state){
         require(_index>=0,"index value must be positive");
         require(_index<=burns_sent[msg.sender].length,"Index invalid or out of range");
-        return (burns_sent[msg.sender][_index],burn_requests[burns_sent[msg.sender][_index]].wallet,burn_requests[burns_sent[msg.sender][_index]].value,burn_requests[burns_sent[msg.sender][_index]].timeStamp,burn_file_name[burns_sent[msg.sender][_index]]);
+        return (burns_sent[msg.sender][_index],burn_requests[burns_sent[msg.sender][_index]].value,burn_requests[burns_sent[msg.sender][_index]].timeStamp,burn_file_name[burns_sent[msg.sender][_index]], burn_state[burns_sent[msg.sender][_index]]);
     }
     function admin_get_total_burns() public onlyOwner view returns (uint total_burns){
         return burn_requests.length;
     }
     
-    function admin_get_burn(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name) {
+    function admin_get_burn(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state) {
         require(_index>=0,"index value must be positive");
         require(_index<=burn_requests.length,"Index invalid or out of range");
-        return (burn_requests[_index].wallet,burn_requests[_index].value,burn_requests[_index].timeStamp,burn_file_name[_index]);
+        return (burn_requests[_index].wallet,burn_requests[_index].value,burn_requests[_index].timeStamp,burn_file_name[_index], burn_state[_index]);
     }
     
     function burn_tokens_approve (uint256 _burn, string memory _file_name) public{
