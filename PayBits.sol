@@ -83,11 +83,11 @@ contract PayBits is ERC20 {
         //require(_index<=requests_sent[msg.sender].length,"Index invalid or out of range");
         return (requests_sent[msg.sender][_index],mint_requests[requests_sent[msg.sender][_index]].value,mint_requests[requests_sent[msg.sender][_index]].timeStamp,mint_requests[requests_sent[msg.sender][_index]].file_name, request_state[requests_sent[msg.sender][_index]]);
     }
-    function admin_get_total_requests() public onlyOwner view returns (uint total_requests){
+    function admin_get_total_requests() public onlyValidator view returns (uint total_requests){
         return mint_requests.length;
     }
     
-    function admin_get_request(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state) {
+    function admin_get_request(uint _index) public onlyValidator view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state) {
         require(_index>=0,"index value must be positive");
         require(_index<=mint_requests.length,"Index invalid or out of range");
         return (mint_requests[_index].wallet,mint_requests[_index].value,mint_requests[_index].timeStamp,mint_requests[_index].file_name, request_state[_index]);
@@ -117,11 +117,11 @@ contract PayBits is ERC20 {
         require(_index<=burns_sent[msg.sender].length,"Index invalid or out of range");
         return (burns_sent[msg.sender][_index],burn_requests[burns_sent[msg.sender][_index]].value,burn_requests[burns_sent[msg.sender][_index]].timeStamp,burn_file_name[burns_sent[msg.sender][_index]], burn_state[burns_sent[msg.sender][_index]]);
     }
-    function admin_get_total_burns() public onlyOwner view returns (uint total_burns){
+    function admin_get_total_burns() public onlyValidator view returns (uint total_burns){
         return burn_requests.length;
     }
     
-    function admin_get_burn(uint _index) public onlyOwner view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state) {
+    function admin_get_burn(uint _index) public onlyValidator view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state) {
         require(_index>=0,"index value must be positive");
         require(_index<=burn_requests.length,"Index invalid or out of range");
         return (burn_requests[_index].wallet,burn_requests[_index].value,burn_requests[_index].timeStamp,burn_file_name[_index], burn_state[_index]);
@@ -149,6 +149,10 @@ contract PayBits is ERC20 {
      */
     modifier onlyOwner() {
         require(owner() == _msgSender(), "Ownable: caller is not the owner");
+        _;
+    }
+    modifier onlyValidator(){
+        require(addressValidator[msg.sender],"Only validators allowed");
         _;
     }
 
