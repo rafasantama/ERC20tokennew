@@ -21,37 +21,6 @@
         //web3 = new Web3("http://localhost:8546");
         abi = [
             {
-                "inputs": [
-                    {
-                        "internalType": "string",
-                        "name": "name",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "symbol",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "initialSupply",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "validator_name",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "validator_ID",
-                        "type": "string"
-                    }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            },
-            {
                 "anonymous": false,
                 "inputs": [
                     {
@@ -147,30 +116,6 @@
                 "inputs": [
                     {
                         "internalType": "address",
-                        "name": "owner",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "spender",
-                        "type": "address"
-                    }
-                ],
-                "name": "allowance",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "address",
                         "name": "spender",
                         "type": "address"
                     },
@@ -194,27 +139,8 @@
             {
                 "inputs": [
                     {
-                        "internalType": "address",
-                        "name": "account",
-                        "type": "address"
-                    }
-                ],
-                "name": "balanceOf",
-                "outputs": [
-                    {
                         "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "_cantidad",
+                        "name": "_value",
                         "type": "uint256"
                     }
                 ],
@@ -224,16 +150,21 @@
                 "type": "function"
             },
             {
-                "inputs": [],
-                "name": "decimals",
-                "outputs": [
+                "inputs": [
                     {
-                        "internalType": "uint8",
-                        "name": "",
-                        "type": "uint8"
+                        "internalType": "uint256",
+                        "name": "_burn",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_file_name",
+                        "type": "string"
                     }
                 ],
-                "stateMutability": "view",
+                "name": "burn_tokens_approve",
+                "outputs": [],
+                "stateMutability": "nonpayable",
                 "type": "function"
             },
             {
@@ -288,40 +219,6 @@
                 "inputs": [
                     {
                         "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "mint_requests",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "walllet",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "value",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "timeStamp",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "file_name",
-                        "type": "string"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
                         "name": "_request",
                         "type": "uint256"
                     }
@@ -351,61 +248,22 @@
             },
             {
                 "inputs": [],
-                "name": "name",
-                "outputs": [
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "owner",
-                "outputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
                 "name": "renounceOwnership",
                 "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
             },
             {
-                "inputs": [],
-                "name": "symbol",
-                "outputs": [
-                    {
-                        "internalType": "string",
-                        "name": "",
-                        "type": "string"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "totalSupply",
-                "outputs": [
+                "inputs": [
                     {
                         "internalType": "uint256",
-                        "name": "",
+                        "name": "_price",
                         "type": "uint256"
                     }
                 ],
-                "stateMutability": "view",
+                "name": "set_price",
+                "outputs": [],
+                "stateMutability": "nonpayable",
                 "type": "function"
             },
             {
@@ -477,6 +335,371 @@
             {
                 "inputs": [
                     {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "symbol",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "initialSupply",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "validator_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "validator_ID",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "initial_price",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_index",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "admin_get_burn",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_wallet",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_value",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_timeStamp",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_file_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "_state",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_index",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "admin_get_request",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_wallet",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_value",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_timeStamp",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_file_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "_state",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "admin_get_total_burns",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "total_burns",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "admin_get_total_requests",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "total_requests",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "spender",
+                        "type": "address"
+                    }
+                ],
+                "name": "allowance",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "balanceOf",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "decimals",
+                "outputs": [
+                    {
+                        "internalType": "uint8",
+                        "name": "",
+                        "type": "uint8"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_index",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "get_my_burn",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "burn_id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_value",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_timeStamp",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_file_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "_state",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_index",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "get_my_request",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "request_id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_value",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_timeStamp",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_file_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "_state",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "get_my_total_burns",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "total_burns",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "get_my_total_requests",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "total_requests",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "name",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "owner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "price",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "symbol",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "totalSupply",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
                         "internalType": "uint256",
                         "name": "",
                         "type": "uint256"
@@ -499,7 +722,7 @@
                 "type": "function"
             }
         ];
-        contractAddress = '0x6906fcDB0123e618B4a3A817312c9a2da3384859';
+        contractAddress = '0x8FFd88397dF4a0564A3d07D61A8EB08955E48052';
         SeedCoin_web3 = new webi3.eth.Contract(abi, contractAddress);
         account1 = '0xd0810745c98403371f27c07963696eB65D0cc692';
         const privateKey1 = 'dc3f76b7465f267b10bf355a684f49a7f87270b56f0fcc21b1e55fd81ebfbd3d';
