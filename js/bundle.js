@@ -21,6 +21,42 @@
         //web3 = new Web3("http://localhost:8546");
         abi = [
             {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "symbol",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "initialSupply",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "validator_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "validator_ID",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "initial_price",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
                 "anonymous": false,
                 "inputs": [
                     {
@@ -115,262 +151,6 @@
             {
                 "inputs": [
                     {
-                        "internalType": "address",
-                        "name": "spender",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "amount",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "approve",
-                "outputs": [
-                    {
-                        "internalType": "bool",
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "_value",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "burn_tokens",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "_burn",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_file_name",
-                        "type": "string"
-                    }
-                ],
-                "name": "burn_tokens_approve",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "spender",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "subtractedValue",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "decreaseAllowance",
-                "outputs": [
-                    {
-                        "internalType": "bool",
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "spender",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "addedValue",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "increaseAllowance",
-                "outputs": [
-                    {
-                        "internalType": "bool",
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "_request",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "mint_tokens_approve",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "_value",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_file_name",
-                        "type": "string"
-                    }
-                ],
-                "name": "mint_tokens_request",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "name": "renounceOwnership",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "_price",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "set_price",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "recipient",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "amount",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "transfer",
-                "outputs": [
-                    {
-                        "internalType": "bool",
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "sender",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "recipient",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "amount",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "transferFrom",
-                "outputs": [
-                    {
-                        "internalType": "bool",
-                        "name": "",
-                        "type": "bool"
-                    }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "newOwner",
-                        "type": "address"
-                    }
-                ],
-                "name": "transferOwnership",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "string",
-                        "name": "name",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "symbol",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "initialSupply",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "validator_name",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "validator_ID",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "initial_price",
-                        "type": "uint256"
-                    }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            },
-            {
-                "inputs": [
-                    {
                         "internalType": "uint256",
                         "name": "_index",
                         "type": "uint256"
@@ -402,6 +182,11 @@
                         "internalType": "bool",
                         "name": "_state",
                         "type": "bool"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_bank",
+                        "type": "string"
                     }
                 ],
                 "stateMutability": "view",
@@ -500,6 +285,30 @@
                 "inputs": [
                     {
                         "internalType": "address",
+                        "name": "spender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "approve",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
                         "name": "account",
                         "type": "address"
                     }
@@ -516,6 +325,50 @@
                 "type": "function"
             },
             {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "burn_tokens",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_burn",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_file_name",
+                        "type": "string"
+                    }
+                ],
+                "name": "burn_tokens_approve",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "_account_data",
+                        "type": "string"
+                    }
+                ],
+                "name": "change_bank",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
                 "inputs": [],
                 "name": "decimals",
                 "outputs": [
@@ -526,6 +379,30 @@
                     }
                 ],
                 "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "spender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "subtractedValue",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "decreaseAllowance",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "nonpayable",
                 "type": "function"
             },
             {
@@ -562,6 +439,11 @@
                         "internalType": "bool",
                         "name": "_state",
                         "type": "bool"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "bank",
+                        "type": "string"
                     }
                 ],
                 "stateMutability": "view",
@@ -633,6 +515,61 @@
                 "type": "function"
             },
             {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "spender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "addedValue",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "increaseAllowance",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_request",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "mint_tokens_approve",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_value",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_file_name",
+                        "type": "string"
+                    }
+                ],
+                "name": "mint_tokens_request",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
                 "inputs": [],
                 "name": "name",
                 "outputs": [
@@ -673,6 +610,26 @@
             },
             {
                 "inputs": [],
+                "name": "renounceOwnership",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_price",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "set_price",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
                 "name": "symbol",
                 "outputs": [
                     {
@@ -700,6 +657,72 @@
             {
                 "inputs": [
                     {
+                        "internalType": "address",
+                        "name": "recipient",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transfer",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "sender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "recipient",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transferFrom",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "newOwner",
+                        "type": "address"
+                    }
+                ],
+                "name": "transferOwnership",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
                         "internalType": "uint256",
                         "name": "",
                         "type": "uint256"
@@ -722,7 +745,7 @@
                 "type": "function"
             }
         ];
-        contractAddress = '0x8FFd88397dF4a0564A3d07D61A8EB08955E48052';
+        contractAddress = '0xfD2dcB3A02e76E39Fe3686aBeC84665aC5745b66';
         SeedCoin_web3 = new webi3.eth.Contract(abi, contractAddress);
         account1 = '0xd0810745c98403371f27c07963696eB65D0cc692';
         const privateKey1 = 'dc3f76b7465f267b10bf355a684f49a7f87270b56f0fcc21b1e55fd81ebfbd3d';
