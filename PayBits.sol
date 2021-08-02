@@ -106,7 +106,7 @@ contract PayBits is ERC20 {
         burn_requests.push(burn_request(msg.sender, _value*1e18, block.timestamp));
         current_burn=burn_requests.length-1;
         burns_sent[msg.sender].push(current_burn);
-        _burn(msg.sender,_value);
+        _burn(msg.sender,_value*1e18);
     }
     function get_my_total_burns() public view returns (uint total_burns){
         return burns_sent[msg.sender].length;
