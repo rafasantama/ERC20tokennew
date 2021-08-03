@@ -151,6 +151,25 @@
             {
                 "inputs": [
                     {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "name": "addressValidator",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
                         "internalType": "uint256",
                         "name": "_index",
                         "type": "uint256"
@@ -262,6 +281,58 @@
                         "internalType": "uint256",
                         "name": "total_requests",
                         "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "admin_get_total_validators",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "total_validators",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_index",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "admin_get_validator",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "index",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "ID",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "wallet",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "state",
+                        "type": "bool"
                     }
                 ],
                 "stateMutability": "view",
@@ -665,6 +736,19 @@
                 "type": "function"
             },
             {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_address",
+                        "type": "address"
+                    }
+                ],
+                "name": "toogle_validator",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
                 "inputs": [],
                 "name": "totalSupply",
                 "outputs": [
@@ -742,33 +826,9 @@
                 "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "validators",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "hash_data",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "wallet",
-                        "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
             }
         ];
-        contractAddress = '0xF0753c1E9147C825962377b8a8e47FA4b237E4f0';
+        contractAddress = '0xA1527e17696a6124950695B96bfE181CAf5b8acb';
         SeedCoin_web3 = new webi3.eth.Contract(abi, contractAddress);
         account1 = '0xd0810745c98403371f27c07963696eB65D0cc692';
         const privateKey1 = 'dc3f76b7465f267b10bf355a684f49a7f87270b56f0fcc21b1e55fd81ebfbd3d';

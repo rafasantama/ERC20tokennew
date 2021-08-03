@@ -7,7 +7,6 @@ contract PayBits is ERC20 {
     
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     address private _owner;
-    uint validators_count;
     uint hashDigits = 8;
     uint hashModulus = 10 ** hashDigits;
     uint current_request;
@@ -30,7 +29,8 @@ contract PayBits is ERC20 {
     }
 
     struct validator{
-        uint hash_data;
+        string name;
+        string ID;
         address wallet;
     }
     struct mint_request{
@@ -55,7 +55,7 @@ contract PayBits is ERC20 {
     mapping (uint => bool) request_state;
     mapping (uint => bool) burn_state;
     mapping (uint => string) burn_file_name;
-    mapping (address => bool) addressValidator;
+    mapping (address => bool) public addressValidator;
     mapping (address => string) address2bank;
     
     function set_price(uint _price) public onlyOwner{
@@ -63,11 +63,27 @@ contract PayBits is ERC20 {
     }
     
     function add_wallet_sign(address _address, string memory _name, string memory _ID) public onlyOwner{
-        uint hash_uint=uint(keccak256(abi.encodePacked(_name,_ID)));
-        uint hash_data=hash_uint % hashModulus;
-        validators.push(validator(hash_data,_address));
+        validators.push(validator(_name,_ID,_address));
         addressValidator[_address]=true;
-        validators_count++;
+    }
+    
+    function toogle_validator(address _address) public onlyOwner {
+        if(addressValidator[_address]){
+            addressValidator[_address]=false;
+        }
+        else {
+            addressValidator[_address]=true;
+        }
+    }
+    
+    function admin_get_total_validators() public onlyOwner view returns (uint total_validators){
+        return validators.length;
+    }
+    
+    function admin_get_validator(uint _index) public onlyOwner view returns (uint index, string memory name, string memory ID,address wallet, bool state) {
+        require(_index>=0,"index value must be positive");
+        require(_index<=mint_requests.length,"Index invalid or out of range");
+        return (_index, validators[_index].name, validators[_index].ID, validators[_index].wallet, addressValidator[validators[_index].wallet] );
     }
     
     function mint_tokens_request (uint256 _value, string memory _file_name) public{
