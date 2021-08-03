@@ -72,7 +72,7 @@ contract PayBits is ERC20 {
     
     function mint_tokens_request (uint256 _value, string memory _file_name) public{
         require(_value>0,"value request must be positive");
-        mint_requests.push(mint_request(msg.sender, _value*1e18, block.timestamp,_file_name));
+        mint_requests.push(mint_request(msg.sender, _value, block.timestamp,_file_name));
         current_request=mint_requests.length-1;
         requests_sent[msg.sender].push(current_request);
     }
@@ -90,10 +90,10 @@ contract PayBits is ERC20 {
         return mint_requests.length;
     }
     
-    function admin_get_request(uint _index) public onlyValidator view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state) {
+    function admin_get_request(uint _index) public onlyValidator view returns (uint index, address wallet, uint value, uint timeStamp, string memory file_name, bool state) {
         require(_index>=0,"index value must be positive");
         require(_index<=mint_requests.length,"Index invalid or out of range");
-        return (mint_requests[_index].wallet,mint_requests[_index].value,mint_requests[_index].timeStamp,mint_requests[_index].file_name, request_state[_index]);
+        return (_index, mint_requests[_index].wallet,mint_requests[_index].value,mint_requests[_index].timeStamp,mint_requests[_index].file_name, request_state[_index]);
     }
     
     function mint_tokens_approve (uint256 _request) public{
@@ -107,11 +107,14 @@ contract PayBits is ERC20 {
     function change_bank(string memory _account_data) public{
         address2bank[msg.sender]=_account_data;
     }
+    function get_my_bank_data() public view returns (string memory bank_data){
+        return address2bank[msg.sender];
+    }
     function burn_tokens(uint256 _value) public{
         require(bytes(address2bank[msg.sender]).length != 0,"need bank account to send a burn request");
         require(_value>0, "value must be positive");
-        _burn(msg.sender,_value*1e18);
-        burn_requests.push(burn_request(msg.sender, _value*1e18, block.timestamp, address2bank[msg.sender]));
+        _burn(msg.sender,_value);
+        burn_requests.push(burn_request(msg.sender, _value, block.timestamp, address2bank[msg.sender]));
         current_burn=burn_requests.length-1;
         burns_sent[msg.sender].push(current_burn);
     }
@@ -128,10 +131,10 @@ contract PayBits is ERC20 {
         return burn_requests.length;
     }
     
-    function admin_get_burn(uint _index) public onlyValidator view returns (address _wallet, uint _value, uint _timeStamp, string memory _file_name, bool _state, string memory _bank) {
+    function admin_get_burn(uint _index) public onlyValidator view returns (uint index,address wallet, uint value, uint timeStamp, string memory file_name, bool state, string memory bank) {
         require(_index>=0,"index value must be positive");
         require(_index<=burn_requests.length,"Index invalid or out of range");
-        return (burn_requests[_index].wallet,burn_requests[_index].value,burn_requests[_index].timeStamp,burn_file_name[_index], burn_state[_index],burn_requests[_index].bank);
+        return (index, burn_requests[_index].wallet,burn_requests[_index].value,burn_requests[_index].timeStamp,burn_file_name[_index], burn_state[_index],burn_requests[_index].bank);
     }
     
     function burn_tokens_approve (uint256 _burn, string memory _file_name) public{
@@ -142,6 +145,7 @@ contract PayBits is ERC20 {
         burn_file_name[_burn]=_file_name;
         burn_state[_burn]=true;
     }
+
     
     //Ownable.sol
     /**

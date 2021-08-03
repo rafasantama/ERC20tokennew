@@ -159,33 +159,38 @@
                 "name": "admin_get_burn",
                 "outputs": [
                     {
+                        "internalType": "uint256",
+                        "name": "index",
+                        "type": "uint256"
+                    },
+                    {
                         "internalType": "address",
-                        "name": "_wallet",
+                        "name": "wallet",
                         "type": "address"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "_value",
+                        "name": "value",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "_timeStamp",
+                        "name": "timeStamp",
                         "type": "uint256"
                     },
                     {
                         "internalType": "string",
-                        "name": "_file_name",
+                        "name": "file_name",
                         "type": "string"
                     },
                     {
                         "internalType": "bool",
-                        "name": "_state",
+                        "name": "state",
                         "type": "bool"
                     },
                     {
                         "internalType": "string",
-                        "name": "_bank",
+                        "name": "bank",
                         "type": "string"
                     }
                 ],
@@ -203,28 +208,33 @@
                 "name": "admin_get_request",
                 "outputs": [
                     {
+                        "internalType": "uint256",
+                        "name": "index",
+                        "type": "uint256"
+                    },
+                    {
                         "internalType": "address",
-                        "name": "_wallet",
+                        "name": "wallet",
                         "type": "address"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "_value",
+                        "name": "value",
                         "type": "uint256"
                     },
                     {
                         "internalType": "uint256",
-                        "name": "_timeStamp",
+                        "name": "timeStamp",
                         "type": "uint256"
                     },
                     {
                         "internalType": "string",
-                        "name": "_file_name",
+                        "name": "file_name",
                         "type": "string"
                     },
                     {
                         "internalType": "bool",
-                        "name": "_state",
+                        "name": "state",
                         "type": "bool"
                     }
                 ],
@@ -403,6 +413,19 @@
                     }
                 ],
                 "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "get_my_bank_data",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "bank_data",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
                 "type": "function"
             },
             {
@@ -745,7 +768,7 @@
                 "type": "function"
             }
         ];
-        contractAddress = '0xfD2dcB3A02e76E39Fe3686aBeC84665aC5745b66';
+        contractAddress = '0xF0753c1E9147C825962377b8a8e47FA4b237E4f0';
         SeedCoin_web3 = new webi3.eth.Contract(abi, contractAddress);
         account1 = '0xd0810745c98403371f27c07963696eB65D0cc692';
         const privateKey1 = 'dc3f76b7465f267b10bf355a684f49a7f87270b56f0fcc21b1e55fd81ebfbd3d';
